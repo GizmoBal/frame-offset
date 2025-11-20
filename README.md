@@ -20,3 +20,5 @@ This script needs a working installation of `VapourSynth` with the `ffms2` index
 ## Screenshot
 
 ![Example](./screenshot.png)
+
+In this example, the ranges of mismatching frames are only small ranges (probably due to artifacts). This shows that that the 2 clips have a frame offset of 337 frames and are frame-accurate.
