@@ -93,16 +93,17 @@ def offset(
     clip2 = core.std.Crop(clip2, left=left2, right=right2, top=top2, bottom=bottom2)
 
 
-    #----------------------------------------------------------------------------#
-    # Finding a range of 10 frames in clip1 with no identical consecutive frames #
-    #----------------------------------------------------------------------------#
+    #--------------------------------------------------------------------------------#
+    # Finding a sample range of frames in clip1 with no identical consecutive frames #
+    #--------------------------------------------------------------------------------#
 
     ref_frame = 20000
     INC = 100
+    sample_length = 5
 
     sys.stderr = open(os.devnull, "w")
     number_identical_consecutive = 0
-    for i in range(0,8):
+    for i in range(0,sample_length-2):
         test_clip1 = clip1[ref_frame+i:ref_frame+i+1]
         test_clip2 = clip1[ref_frame+i+1:ref_frame+i+2]
         detection = lvs.FindDiff().find_diff(test_clip1, test_clip2).diff_ranges
@@ -111,7 +112,7 @@ def offset(
     while number_identical_consecutive > 0:
         ref_frame += INC
         number_identical_consecutive = 0
-        for i in range(0,8):
+        for i in range(0,sample_length-2):
             test_clip1 = clip1[ref_frame+i:ref_frame+i+1]
             test_clip2 = clip1[ref_frame+i+1:ref_frame+i+2]
             detection = lvs.FindDiff().find_diff(test_clip1, test_clip2).diff_ranges
@@ -124,11 +125,11 @@ def offset(
     #------------------------#
 
     sys.stderr = open(os.devnull, "w")
-    test1 = clip1[ref_frame:ref_frame+10]
+    test1 = clip1[ref_frame:ref_frame+sample_length]
     for i in range(0,3000):
         delay = i
         print(f"\rOffset: {delay}", end='')
-        test2 = clip2[ref_frame+delay:ref_frame+10+delay]
+        test2 = clip2[ref_frame+delay:ref_frame+sample_length+delay]
         ranges = lvs.FindDiff().find_diff(test1, test2).diff_ranges
         if len(ranges) == 0:
             sys.stderr = sys.__stderr__
@@ -136,7 +137,7 @@ def offset(
             print(f"Second clip offset: {Style.BRIGHT}{Fore.BLUE}{delay}{Style.RESET_ALL} (apply the opposite to sync any asset from the second clip to the first clip)")
             break
         delay *= -1
-        test2 = clip2[ref_frame+delay:ref_frame+10+delay]
+        test2 = clip2[ref_frame+delay:ref_frame+sample_length+delay]
         ranges = lvs.FindDiff().find_diff(test1, test2).diff_ranges
         if len(ranges) == 0:
             sys.stderr = sys.__stderr__
