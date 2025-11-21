@@ -51,10 +51,11 @@ def offset(
     #------------------#
 
     print('')
-    print(f"{Style.BRIGHT}{Fore.BLUE}{'First clip':^30}{Style.RESET_ALL}",f"{Style.BRIGHT}{Fore.BLUE}{'Second clip':^30}{Style.RESET_ALL}")
-    print('')
-    print(f"{'Number of frames: ':<18}{Fore.BLUE}{str(len(clip1)):<12}{Style.RESET_ALL}",f"{'Number of frames: ':<18}{Fore.BLUE}{str(len(clip2)):<12}{Style.RESET_ALL}")
-    print('')
+    print(f"{Style.BRIGHT}{Fore.BLUE}{'First clip':^30}{Style.RESET_ALL}",'|',f"{Style.BRIGHT}{Fore.BLUE}{'Second clip':^30}{Style.RESET_ALL}")
+    print('-------------------------------|-------------------------------')
+    # print(f"{'':^30}",'|')
+    print(f"{'Number of frames: ':<18}{Fore.BLUE}{str(len(clip1)):<12}{Style.RESET_ALL}",'|',f"{'Number of frames: ':<18}{Fore.BLUE}{str(len(clip2)):<12}{Style.RESET_ALL}")
+    print(f"{'':^30}",'|')
 
 
     #-----------------#
@@ -88,10 +89,10 @@ def offset(
         left2 = clip2.get_frame(ref_frame).props['CropLeftValue']
         right2 = clip2.get_frame(ref_frame).props['CropRightValue']
 
-    print(f"{'Top crop: ':<10}{Fore.BLUE}{str(top1):<20}{Style.RESET_ALL}",f"{'Top crop: ':<10}{Fore.BLUE}{str(top2):<20}{Style.RESET_ALL}")
-    print(f"{'Bottom crop: ':<13}{Fore.BLUE}{str(bottom1):17}{Style.RESET_ALL}",f"{'Bottom crop: ':<13}{Fore.BLUE}{str(bottom2):17}{Style.RESET_ALL}")
-    print(f"{'Left crop: ':<11}{Fore.BLUE}{str(left1):19}{Style.RESET_ALL}",f"{'Left crop: ':<11}{Fore.BLUE}{str(left2):19}{Style.RESET_ALL}")
-    print(f"{'Right crop: ':<12}{Fore.BLUE}{str(right1):18}{Style.RESET_ALL}",f"{'Right crop: ':<12}{Fore.BLUE}{str(right2):18}{Style.RESET_ALL}")
+    print(f"{'Top crop: ':<10}{Fore.BLUE}{str(top1):<20}{Style.RESET_ALL}",'|',f"{'Top crop: ':<10}{Fore.BLUE}{str(top2):<20}{Style.RESET_ALL}")
+    print(f"{'Bottom crop: ':<13}{Fore.BLUE}{str(bottom1):17}{Style.RESET_ALL}",'|',f"{'Bottom crop: ':<13}{Fore.BLUE}{str(bottom2):17}{Style.RESET_ALL}")
+    print(f"{'Left crop: ':<11}{Fore.BLUE}{str(left1):19}{Style.RESET_ALL}",'|',f"{'Left crop: ':<11}{Fore.BLUE}{str(left2):19}{Style.RESET_ALL}")
+    print(f"{'Right crop: ':<12}{Fore.BLUE}{str(right1):18}{Style.RESET_ALL}",'|',f"{'Right crop: ':<12}{Fore.BLUE}{str(right2):18}{Style.RESET_ALL}")
     print('')
 
     clip1 = core.std.Crop(clip1, left=left1, right=right1, top=top1, bottom=bottom1)
