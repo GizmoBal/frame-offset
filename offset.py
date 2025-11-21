@@ -41,6 +41,11 @@ def offset(
     clip1 = core.ffms2.Source(videoFileOne)
     clip2 = core.ffms2.Source(videoFileTwo)
 
+    print('')
+    print(f"First clip: {Fore.BLUE}{fileOne}{Style.RESET_ALL}")
+    print(f"Second clip: {Fore.BLUE}{fileTwo}{Style.RESET_ALL}")
+
+
     #------------------#
     # measuring length #
     #------------------#
