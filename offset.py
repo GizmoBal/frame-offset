@@ -185,3 +185,5 @@ def offset(
         print('Frame-accuracy check')
         ranges = lvs.FindDiff().find_diff(test1, test2).diff_ranges
         print(ranges)
+
+    return delay
